@@ -35,7 +35,7 @@ describe('Busca todos os produtos no BD', function () {
       response.json = sinon.stub().returns();
       sinon
         .stub(productService, "getAll")
-        .resolves([{ id: 1, name: 'Ana Melo', age: 18 }]);
+        .resolves([{ id: 1, name: 'Martelo de Thor'}]);
     });
     after(function () {
       productService.getAll.restore();
@@ -47,7 +47,7 @@ describe('Busca todos os produtos no BD', function () {
     it('o array com os dados', async function () {
       await productController.getAll(request, response);
       expect(
-        response.json.calledWith([{ id: 1, name: 'Ana Melo', age: 18 }])
+        response.json.calledWith([{ id: 1, name: 'Martelo de Thor'}])
       ).to.be.equal(true);
     });
   });

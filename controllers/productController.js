@@ -1,20 +1,18 @@
-const express = require('express');
-
 const productService = require('../services/productService');
 
-const route = express.Router();
+const ERROR_500 = 'Algo deu errado';
 
-route.get('/', async (_req, res, _next) => {
+const getAll = async (_req, res, _next) => {
   try {
-    const products = await productService.getAll();
-    return res.status(200).json(products);
+    const product = await productService.getAll();
+    return res.status(200).json(product);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'Server Error' });
+    return res.status(500).json({ message: ERROR_500 });
   }
-});
+};
 
-route.get('/:id', async (req, res) => {
+const getById = async (req, res) => {
   try {
     const { id } = req.params;
     const product = await productService.getById(id);
@@ -24,22 +22,22 @@ route.get('/:id', async (req, res) => {
     return res.status(200).json(product);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Server Error' });
+    return res.status(500).json({ message: ERROR_500 });
   }
-});
+};
 
-route.post('/', async (req, res) => {
+const add = async (req, res) => {
   const { name } = req.body;
   try {
     const newProduct = await productService.add(name);
     return res.status(201).json(newProduct);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Server Error' });
+    return res.status(500).json({ message: ERROR_500 });
   }
-});
+};
 
-route.put('/:id', async (req, res) => {
+const update = async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
   try {
@@ -50,19 +48,19 @@ route.put('/:id', async (req, res) => {
     return res.status(200).json(product);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Server Error' });
+    return res.status(500).json({ message: ERROR_500 });
   }
-});
+};
 
-route.delete('/:id', async (req, res) => {
+const exclude = async (req, res) => {
   try {
     const product = await productService.exclude(req.params.id);
-    if (!product) return res.status(404).json({ message: 'Product not found' }); 
-    return res.status(204).end();
+    if (!product) return res.status(404).json({ message: 'Product not found' });
+    return res.status(200).json(product);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Algo deu errado' });
+    return res.status(500).json({ message: ERROR_500 });
   }
-});
+};
 
-module.exports = route;
+module.exports = { getAll, getById, add, update, exclude };
