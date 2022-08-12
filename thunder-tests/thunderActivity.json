@@ -8,9 +8,14 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-08-11T20:33:24.812Z",
-    "modified": "2022-08-12T21:07:56.491Z",
+    "modified": "2022-08-12T22:24:06.596Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"tes\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -36,12 +41,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-08-11T22:15:47.609Z",
-    "modified": "2022-08-12T21:53:54.219Z",
+    "modified": "2022-08-12T22:09:46.574Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"teste 05\"\n}",
+      "raw": "{\n  \"name\": \"\"\n}",
       "form": []
     },
     "tests": []
@@ -93,12 +98,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-08-11T22:17:48.270Z",
-    "modified": "2022-08-11T22:26:13.190Z",
+    "modified": "2022-08-12T22:33:03.941Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"produto Teste\"\n}",
+      "raw": "{\n  \"name\": \"\"\n}",
       "form": []
     },
     "tests": []
@@ -150,14 +155,9 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-08-12T18:44:46.726Z",
-    "modified": "2022-08-12T21:54:00.047Z",
+    "modified": "2022-08-12T22:26:56.972Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"name\": \"teste 05\"\n}",
-      "form": []
-    },
     "tests": []
   },
   {
@@ -245,6 +245,53 @@
     "sortNum": 0,
     "created": "2022-08-12T21:53:19.387Z",
     "modified": "2022-08-12T21:53:19.483Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f597e6c1-7b57-47d8-ba99-5e7133a08c59",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/8",
+    "url": "http://localhost:3000/products/8",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-08-12T22:10:05.613Z",
+    "modified": "2022-08-12T22:10:28.338Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Teste inserindo id 8\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "9f907844-5f9c-4449-a73d-5e23fdd4f1bb",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/9",
+    "url": "http://localhost:3000/products/9",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2022-08-12T22:24:30.462Z",
+    "modified": "2022-08-12T22:24:30.680Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "3a14a654-7ab7-4a3d-9a8a-8ca245096785",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/8",
+    "url": "http://localhost:3000/products/8",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2022-08-12T22:26:45.905Z",
+    "modified": "2022-08-12T22:26:46.182Z",
     "headers": [],
     "params": [],
     "tests": []

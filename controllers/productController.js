@@ -56,7 +56,7 @@ const exclude = async (req, res) => {
   try {
     const product = await productService.exclude(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });
-    return res.status(200).json(product);
+    return res.status(204).end();
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: ERROR_500 });
