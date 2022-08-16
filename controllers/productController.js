@@ -1,5 +1,6 @@
 const productService = require('../services/productService');
 
+const ERROR_404 = 'Product not found';
 const ERROR_500 = 'Algo deu errado';
 
 const getAll = async (_req, res, _next) => {
@@ -18,7 +19,7 @@ const getById = async (req, res) => {
   
     const product = await productService.getById(id);
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: ERROR_404 });
     }
     return res.status(200).json(product);
   } catch (error) {
@@ -29,7 +30,7 @@ const getById = async (req, res) => {
 
 const add = async (req, res) => {
   const { name } = req.body;
-  if (!name) return res.status(404).json({ message: 'Product not found' });
+  if (!name) return res.status(404).json({ message: ERROR_404 });
   try {
     const newProduct = await productService.add(name);
     return res.status(201).json(newProduct);
@@ -43,12 +44,12 @@ const update = async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
   if (id === undefined || name === undefined) {
-   return res.status(404).json({ message: 'Product not found' });
+   return res.status(404).json({ message: ERROR_404 });
   } 
   try {
     const product = await productService.update({ name, id });
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: ERROR_404 });
     }
     return res.status(200).json(product);
   } catch (error) {
@@ -60,7 +61,7 @@ const update = async (req, res) => {
 const exclude = async (req, res) => {
   try {
     const product = await productService.exclude(req.params.id);
-    if (!product) return res.status(404).json({ message: 'Product not found' });
+    if (!product) return res.status(404).json({ message: ERROR_404 });
     return res.status(204).end();
   } catch (error) {
     console.error(error);
