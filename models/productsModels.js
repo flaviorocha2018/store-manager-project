@@ -23,6 +23,7 @@ const add = async (name) => {
 };
 
 const update = async (name, id) => {
+  console.log(name, id);
   const [result] = await connection.execute(
     'UPDATE products SET name = ? WHERE id = ?;', [name, id],
      );

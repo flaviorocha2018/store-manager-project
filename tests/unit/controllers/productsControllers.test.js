@@ -34,7 +34,7 @@ describe('Busca todos os produtos no BD', function () {
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns();
       sinon
-        .stub(productService, "getAll")
+        .stub(productService, 'getAll')
         .resolves([{ id: 1, name: 'Martelo de Thor'}]);
     });
     after(function () {

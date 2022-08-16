@@ -15,6 +15,7 @@ const getAll = async (_req, res, _next) => {
 const getById = async (req, res) => {
   try {
     const { id } = req.params;
+  
     const product = await productService.getById(id);
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
@@ -28,6 +29,7 @@ const getById = async (req, res) => {
 
 const add = async (req, res) => {
   const { name } = req.body;
+  if (!name) return res.status(404).json({ message: 'Product not found' });
   try {
     const newProduct = await productService.add(name);
     return res.status(201).json(newProduct);
@@ -40,6 +42,9 @@ const add = async (req, res) => {
 const update = async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
+  if (id === undefined || name === undefined) {
+   return res.status(404).json({ message: 'Product not found' });
+  } 
   try {
     const product = await productService.update({ name, id });
     if (!product) {
