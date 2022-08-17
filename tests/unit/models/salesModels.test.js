@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const connection = require('../../../models/connection');
 const salesController = require('../../../controllers/salesController');
 const salesService = require('../../../services/salesService');
-const salesModel require('../../../models/salesModel');
+const salesModel = require('../../../models/salesModel');
 
 describe('Busca todas as vendas no BD', () => {
   describe('quando não existe nenhuma venda criada', () => {
@@ -12,15 +12,15 @@ describe('Busca todas as vendas no BD', () => {
       const resultadoExecute = [[], []];
       sinon.stub(connection, 'execute').resolves(resultadoExecute);
     });
-    after(function () {
+    after(async () => {
       connection.execute.restore();
     });
-    it('retorna um array', async function () {
+    it('retorna um array', async () => {
       const result = await salesModels.getAll();
       expect(result).to.be.an('array');
     });
 
-    it('o array vazio', async function () {
+    it('o array vazio', async () => {
       const result = await salesModels.getAll();
       expect(result).to.be.empty;
     });
@@ -38,19 +38,22 @@ describe('Busca todas as vendas no BD', () => {
       ];
       sinon.stub(connection, 'execute').resolves(resultadoExecute);
     });
-    it('retorne um array', async function () {
+    after(async () => {
+      connection.execute.restore();
+    })
+    it('retorne um array', async () => {
       const resultado = await salesModels.getAll();
       expect(resultado).to.be.an('array');
     });
-    it('o array não esteja vazio', async function () {
+    it('o array não esteja vazio', async () => {
       const result = await salesModels.getAll();
       expect(result).to.be.not.empty;
     });
-    it('o array possua itens do tipo objeto', async function () {
+    it('o array possua itens do tipo objeto', async () => {
       const result = await salesModels.getAll();
       expect(result[0]).to.be.an('object');
     });
-    it('objetos tenham as propriedades: id, productId, quantity', async function () {
+    it('objetos tenham as propriedades: id, productId, quantity', async () => {
       const result = await salesModels.getAll();
       const item = result[0];
       expect(item).to.include.all.keys('id', 'productId', 'quantity');

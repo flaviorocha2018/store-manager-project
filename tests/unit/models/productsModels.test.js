@@ -12,7 +12,7 @@ describe('Busca todas os produtos no BD', () => {
       const resultadoExecute = [[], []];
       sinon.stub(connection, 'execute').resolves(resultadoExecute);
     });
-    after(function () {
+    after(async () => {
       connection.execute.restore();
     });
     it('retorna um array', async function () {
@@ -30,6 +30,9 @@ describe('Busca todas os produtos no BD', () => {
       const resultadoExecute = [[{ id: 1, name: 'Martelo de Thor' }], []];
       sinon.stub(connection, 'execute').resolves(resultadoExecute);
     });
+     after(async () => {
+       connection.execute.restore();
+     });
     it('retorne um array', async function () {
       const resultado = await productsModels.getAll();
       expect(resultado).to.be.an('array');
