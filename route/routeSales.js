@@ -11,7 +11,7 @@ routeSales.get('/:id', salesController.getById);
 
 routeSales.post('/', salesValidation, salesController.addSalesProducts);
 
-routeSales.put('/:id', salesController.updateSales);
+routeSales.put('/:id', salesValidation, salesController.updateSales);
 
 routeSales.delete('/:id', salesController.deleteSales);
 

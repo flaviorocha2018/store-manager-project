@@ -5,56 +5,57 @@ const sinon = require('sinon');
 const salesController = require('../../../controllers/salesController');
 const salesService = require('../../../services/salesService');
 const salesModel = require('../../../models/salesModel');
+const productService = require('../../../services/productService');
+
 
 
 describe('Busca todas as vendas no BD', () => {
   describe('quando não existe nenhuma venda criada', () => {
-    before(function () {
+    before(() => {
       sinon.stub(salesModel, 'getAll').resolves([]);
     });
-    after(function () {
-      salesModel.getAll.restore();
+    after(() => {
+      sinon.restore();
     });
-    it('retorna um array', async function () {
+    it('retorna um array', async () => {
       const result = await salesService.getAll();
       expect(result).to.be.an('array');
     });
 
-    it('o array vazio', async function () {
-      const result = await productService.getAll();
-      expect(result).to.empty;
+    it('o array vazio', async () => {
+      const result = await salesService.getAll();
+      expect(result.length).to.equal(0);
     });
   });
   describe('quando exitem produtos criados', () => {
-    before(function () {
-      sinon.stub(salestModel, "getAll").resolves([
+    before(() => {
+      sinon.stub(salesModel, "getAll").resolves([
         {
-          id: 1,
-          itemsSold: [
-            { productId: 1, quantity: 5 },
-            { productId: 2, quantity: 10 },
-          ],
+          saleId: 1,
+          date: "2022-08-17T17:30:37.000Z",
+          productId: 2,
+          quantity: 2,
         },
       ]);
     });
-    after(function () {
-      salesModel.getAll.restore();
+    after(() => {
+      sinon.restore();
     });
-    it('retorne um array', async function () {
+    it('retorne um array', async () => {
       const result = await salesService.getAll();
       expect(result).to.be.an('array');
     });
-    it('o array não esteja vazio', async function () {
+    it('o array não esteja vazio', async () => {
       const result = await salesService.getAll();
       expect(result).to.not.empty;
     });
-    it('o array possua itens do tipo objeto', async function () {
+    it('o array possua itens do tipo objeto', async () => {
       const result = await salesService.getAll();
       expect(result[0]).to.be.an('object');
     });
-    it('objetos tenham as propriedades: id, productId e quantuty', async function () {
+    it('objetos tenham as propriedades: id, productId e quantuty', async () => {
       const result = await salesService.getAll();
-      expect(result[0]).to.all.keys('id', 'productId', 'quantity');
+      expect(result[0]).to.all.keys('saleId', 'date', 'productId', 'quantity');
     });
   });
 });

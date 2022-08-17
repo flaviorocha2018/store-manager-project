@@ -10,6 +10,12 @@ const addSalesProducts = async (productsSales) => {
       saleIsValid = false;
     } 
 });
+  // await Promise.all(
+  //     productsSales.map((products) =>
+  //       salesModel.getById(productId)),
+  //   );
+
+  // });
   if (saleIsValid) {
     const { id } = await salesModel.addSales();
     await Promise.all(
@@ -31,14 +37,14 @@ const getById = async (id) => {
 
 const updateSales = async ({ saleId, itemsUpdated }) => {
   const sale = await salesModel.getById(saleId);
-  if (!sale) return { code: 404, message: 'Sale not found' };
-
+  if (!sale.length) return { code: 404, message: 'Sale not found' };
+  console.log(sale);
   const productNotFound = await itemsUpdated.reduce(async (acc, item) => {
     const product = await productsModel.getById(item.productId);
     if (!product) return true;
     return acc;
   }, false);
-  if (productNotFound) return { code: 404, message: 'Sale not found' };
+  if (productNotFound) return { code: 404, message: 'Product not found' };
 
   return salesModel.updateSales(saleId, itemsUpdated);
 };

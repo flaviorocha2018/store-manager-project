@@ -49,6 +49,8 @@ const updateSales = async (req, res) => {
   const { id } = req.params;
   const itemsUpdated = req.body;
   const response = await salesService.updateSales({ saleId: id, itemsUpdated });
+ // response= { code: 404, message: 'Sale not found' }
+  if (response.code) return res.status(response.code).json(response);
   return res.status(200).json(response);
 };
 
