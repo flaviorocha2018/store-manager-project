@@ -10,12 +10,6 @@ const addSalesProducts = async (productsSales) => {
       saleIsValid = false;
     } 
 });
-  // await Promise.all(
-  //     productsSales.map((products) =>
-  //       salesModel.getById(productId)),
-  //   );
-
-  // });
   if (saleIsValid) {
     const { id } = await salesModel.addSales();
     await Promise.all(
